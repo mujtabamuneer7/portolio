@@ -1,32 +1,22 @@
 ---
+---
 import Layout from '../Layouts/Layout.astro';
-import ProjectItem from '../components/ProjectItem.astro'; // Ensure 'components' matches your folder name
+import ProjectItem from '../components/ProjectItem.astro';
+
+const myProjects = [
+  { title: "Van Holtz", description: "Design & Interaction" },
+  { title: "Digital Studio", description: "Web Development" },
+  { title: "Brand Identity", description: "Creative Direction" }
+];
 ---
 
-<Layout title="Dev Portfolio | [Your Name]">
-  <div id="cursor" class="fixed w-4 h-4 bg-white rounded-full pointer-events-none z-[999] mix-blend-difference"></div>
-
-  <main>
-    <section class="h-[90vh] flex flex-col justify-end px-6 pb-20">
-      <p class="font-mono text-xs mb-4 text-gray-500 tracking-widest uppercase">// Based in the Terminal</p>
-      <h1 id="hero-title" class="text-[15vw] leading-[0.85] font-black uppercase tracking-tighter">
-        Logic<br/>& Design
-      </h1>
-    </section>
-
-    <section class="px-6 py-20 bg-[#050505]">
-      <ProjectRow number="01" title="Hyper-V" tags="C++ / Low Level" />
-      <ProjectRow number="02" title="Nebula" tags="React / Three.js" />
-      <ProjectRow number="03" title="Synapse" tags="Go / GraphQL" />
-      <ProjectRow number="04" title="Apex" tags="Rust / WASM" />
-    </section>
-
-    <footer class="p-6 h-[40vh] flex items-center border-t border-white/10">
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-10 w-full font-mono text-xs">
-        <div><p class="text-gray-600 mb-2">Socials</p><p>GitHub</p><p>LinkedIn</p></div>
-        <div><p class="text-gray-600 mb-2">Focus</p><p>Backend Architecture</p><p>Interactive UI</p></div>
-      </div>
-    </footer>
+<Layout title="My Portfolio">
+  <main class="bg-black min-h-screen pt-20 px-6">
+    <div class="max-w-6xl mx-auto">
+      {myProjects.map((item) => (
+        <ProjectItem title={item.title} description={item.description} />
+      ))}
+    </div>
   </main>
 </Layout>
 
