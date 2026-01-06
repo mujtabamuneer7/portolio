@@ -1,47 +1,71 @@
 ---
----
 import Layout from '../Layouts/Layout.astro';
 import ProjectItem from '../components/ProjectItem.astro';
 
 const myProjects = [
   { title: "Van Holtz", description: "Design & Interaction" },
   { title: "Digital Studio", description: "Web Development" },
-  { title: "Brand Identity", description: "Creative Direction" }
+  { title: "Brand Identity", description: "Creative Direction" },
+  { title: "Motion Design", description: "3D Animation" }
 ];
 ---
 
-<Layout title="My Portfolio">
-  <main class="bg-black min-h-screen pt-20 px-6">
-    <div class="max-w-6xl mx-auto">
-      {myProjects.map((item) => (
-        <ProjectItem title={item.title} description={item.description} />
-      ))}
-    </div>
+<Layout title="Developer Portfolio">
+  <main class="bg-[#0a0a0a] min-h-screen text-white overflow-hidden">
+    <section class="h-[70vh] flex flex-col justify-center px-10">
+      <h1 class="text-[12vw] leading-[0.9] font-light uppercase tracking-tighter">
+        Logic &<br/>Design
+      </h1>
+      <p class="text-gray-400 mt-10 max-w-md uppercase text-sm tracking-widest">
+        Independent Developer focusing on high-end interaction and minimalist aesthetics.
+      </p>
+    </section>
+
+    <section class="px-10 pb-40">
+      <div class="border-t border-white/20">
+        {myProjects.map((item) => (
+          <ProjectItem title={item.title} description={item.description} />
+        ))}
+      </div>
+    </section>
   </main>
 </Layout>
 
 <script>
   import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-  // 1. Custom Cursor Logic
-  const cursor = document.getElementById('cursor');
-  window.addEventListener('mousemove', (e) => {
-    gsap.to(cursor, { x: e.clientX, y: e.clientY, duration: 0.1 });
-  });
+  gsap.registerPlugin(ScrollTrigger);
 
-  // 2. Hero Text Animation
-  gsap.from("#hero-title", {
-    y: 200,
-    rotateX: -45,
+  // Animate Hero Text
+  gsap.from("h1", {
+    y: 100,
     opacity: 0,
     duration: 1.5,
-    ease: "power4.out"
+    ease: "power4.out",
+    delay: 0.2
   });
 
-  // 3. Row Hover Parallax
-  const rows = document.querySelectorAll('.project-row');
-  rows.forEach(row => {
-    row.addEventListener('mouseenter', () => gsap.to(cursor, { scale: 8, duration: 0.3 }));
-    row.addEventListener('mouseleave', () => gsap.to(cursor, { scale: 1, duration: 0.3 }));
+  // Animate Project Rows as they enter the screen
+  gsap.from(".project-item", {
+    scrollTrigger: {
+      trigger: "main",
+      start: "top center",
+    },
+    y: 50,
+    opacity: 0,
+    duration: 1,
+    stagger: 0.2,
+    ease: "power3.out"
   });
 </script>
+
+<style>
+  /* Base styles to ensure clean appearance */
+  :global(body) {
+    margin: 0;
+    padding: 0;
+    background-color: #0a0a0a;
+    font-family: 'Inter', sans-serif;
+  }
+</style>
