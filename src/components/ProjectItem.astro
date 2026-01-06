@@ -1,0 +1,20 @@
+---
+interface Props { number: string; title: string; tags: string; }
+const { number, title, tags } = Astro.props;
+---
+<div class="project-row group border-b border-white/10 py-12 relative overflow-hidden transition-all duration-500 hover:px-8">
+  <div class="flex items-center justify-between z-10 relative">
+    <div class="flex items-baseline gap-10">
+      <span class="font-mono text-sm text-gray-500">{number}</span>
+      <h2 class="text-6xl md:text-8xl font-black uppercase transition-all duration-500 group-hover:italic group-hover:translate-x-4">
+        {title}
+      </h2>
+    </div>
+    <div class="hidden md:block text-right">
+      <p class="font-mono text-xs uppercase tracking-tighter text-gray-400 group-hover:text-white transition-colors">
+        {tags}
+      </p>
+    </div>
+  </div>
+  <div class="absolute inset-0 bg-white/5 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out"></div>
+</div>
