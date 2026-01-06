@@ -1,20 +1,25 @@
 ---
-interface Props { number: string; title: string; tags: string; }
-const { number, title, tags } = Astro.props;
+// Get the data passed from index.astro
+const { title = "Untitled Project", description = "Development" } = Astro.props;
 ---
-<div class="project-row group border-b border-white/10 py-12 relative overflow-hidden transition-all duration-500 hover:px-8">
-  <div class="flex items-center justify-between z-10 relative">
-    <div class="flex items-baseline gap-10">
-      <span class="font-mono text-sm text-gray-500">{number}</span>
-      <h2 class="text-6xl md:text-8xl font-black uppercase transition-all duration-500 group-hover:italic group-hover:translate-x-4">
-        {title}
-      </h2>
-    </div>
-    <div class="hidden md:block text-right">
-      <p class="font-mono text-xs uppercase tracking-tighter text-gray-400 group-hover:text-white transition-colors">
-        {tags}
-      </p>
-    </div>
+
+<div class="project-item group py-8 border-b border-white/10 flex justify-between items-center cursor-pointer transition-all hover:px-4">
+  <div class="flex flex-col">
+    <h3 class="text-4xl md:text-6xl font-light uppercase tracking-tighter text-white">
+      {title}
+    </h3>
+    <p class="text-sm text-gray-500 uppercase mt-2">{description}</p>
   </div>
-  <div class="absolute inset-0 bg-white/5 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out"></div>
+  
+  <div class="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+    <span class="text-white text-2xl">↗</span>
+  </div>
 </div>
+
+<style>
+  /* Optional: Add custom hover logic here if not using Tailwind for everything */
+  .project-item {
+    position: relative;
+    overflow: hidden;
+  }
+</style>
