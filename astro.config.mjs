@@ -1,17 +1,18 @@
 import { defineConfig } from 'astro/config';
-import tailwind from '@astrojs/tailwind';
+import tailwind from '@astrojs/tailwind'; // Assuming you are using Tailwind
 
+// https://astro.build/config
 export default defineConfig({
-  // 1. Important for InfinityFree: set your actual domain
-  site: 'https://your-domain.infinityfreeapp.com', 
+  // Your exact InfinityFree URL
+  site: 'https://mujtabamuneer.is-great.net',
   
-  // 2. Set to '/' if your site is in htdocs, or '/folder/' if in a subfolder
-  base: '/', 
-
-  integrations: [tailwind()],
+  // This ensures your site works even if the user types it without "index.html"
+  base: '/',
   
+  // This helps with CSS/JS loading on some free hosting providers
   build: {
-    // 3. This ensures links like /about become /about.html for compatibility
-    format: 'file', 
+    assets: '_astro'
   },
+
+  integrations: [tailwind()]
 });
