@@ -34,3 +34,8 @@ jobs:
           server-dir: ./htdocs/
           # This ensures old files are replaced properly on InfinityFree
           dangerous-clean-slate: false
+          on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:  # <--- Add this exact line!
