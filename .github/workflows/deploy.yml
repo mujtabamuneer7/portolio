@@ -3,7 +3,8 @@ name: Build and Deploy to InfinityFree
 on:
   push:
     branches:
-      - main  # This triggers the deploy whenever you push code to the main branch
+      - main
+  workflow_dispatch:  # This gives you the manual "Run" button
 
 jobs:
   build-and-deploy:
@@ -32,10 +33,4 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./dist/
           server-dir: ./htdocs/
-          # This ensures old files are replaced properly on InfinityFree
           dangerous-clean-slate: false
-          on:
-  push:
-    branches:
-      - main
-  workflow_dispatch:  # <--- Add this exact line!
