@@ -1,3 +1,8 @@
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:  # <--- This MUST be here
 name: Build and Deploy to InfinityFree
 
 on:
